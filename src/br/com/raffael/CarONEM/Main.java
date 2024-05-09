@@ -63,15 +63,25 @@ public class Main {
 
         Cadastro cad = new Cadastro();
         Scanner entrada = new Scanner(System.in);
-
+        pularLinha();
         System.out.println("""
                 ==============================================
                                 -- Cadastro --
                 ==============================================
                 """);
         System.out.print("Digite o seu nome: ");
-
         cad.setNome(entrada.next());
+        System.out.print("Digite o seu e-mail: ");
+        cad.setEmail(entrada.next());
+        System.out.print("Digite a sua data de nascimento: ");
+        cad.setDataNascimento(entrada.next());
+
+    }
+
+    public static void pularLinha() {
+        for (int i = 0; i < 20; i++) {
+            System.out.println(" ");
+        }
     }
 }
 
