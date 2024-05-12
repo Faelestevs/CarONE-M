@@ -1,21 +1,40 @@
 package br.com.raffael.CarONEM;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Cadastro {
 
     Scanner leitura = new Scanner(System.in);
 
+
     // Atributos do Cadastro
 
     private String nome;
     private String endereco;
-    private String telefone;
     private String email;
     private String dataNascimento;
     private String senha;
+    private String confirmaSenha;
 
+    // Métodos do cadastro
 
+    public void verificarSenha() {
+        if (confirmaSenha.equals(senha)) {
+            System.out.println("As senhas correspondem");
+        }
+        else {
+            System.out.println("Senha inválida");
+        }
+    }
+
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
+    }
 
     public String getDataNascimento() {
         return dataNascimento;
@@ -55,13 +74,5 @@ public class Cadastro {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 }

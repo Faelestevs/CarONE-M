@@ -1,12 +1,50 @@
 
 import br.com.raffael.CarONEM.Cadastro;
+import br.com.raffael.CarONEM.Passageiro;
+import br.com.raffael.CarONEM.Motorista;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        Scanner menu = new Scanner(System.in);
+
+        int opcao = 1;
+
+        while (true) {
+            System.out.print("""
+                    ==============================================
+                               -- Bem-Vindo CarONE-M --
+                    ==============================================
+                    1) Perfil Passageiro
+                    2) Perfil Motorista
+                    ==============================================
+                    ---> Escolha uma opção:
+                    """);
+            // Atribuindo o valor digitado pelo usuário à variável "opcao"
+            opcao = menu.nextInt();
+
+            switch (opcao) {
+                case 1: {
+                    menuPassageiro();
+                    break;
+                }
+                case 2: {
+                    menuMotorista();
+                    break;
+                }
+                default: {
+                    System.out.println("Opção Inválida.");
+                }
+            }
+
+        }
+    }
+
+    public static void menuPassageiro() {
         // Criando a variável para utilzar o Scanner
-        Scanner leitura = new Scanner(System.in);
+        Scanner menuCliente = new Scanner(System.in);
 
         // Criando um contador inicializado para ser utilizado para a atribuição da opção escolhida pelo usuário
         int opcao = 1;
@@ -16,28 +54,31 @@ public class Main {
             System.out.print("""
                     ==============================================
                                     -- CarONE-M --
+                                   -- Passageiro --
                     ==============================================
                     1) Cadastrar usuário
-                    2) Cadastrar uma viagem
-                    3) Buscar por carona
-                    4) Avaliar uma viagem
+                    2) Buscar por carona
+                    3) Avaliar uma viagem
+                    4) Trocar Perfil
                     5) Sair
                     ==============================================
                     ---> Escolha uma opção:
                     """);
             // Atribuindo o valor digitado pelo usuário à variável "opcao"
-            opcao = leitura.nextInt();
+            opcao = menuCliente.nextInt();
 
             // Avaliação do valor da variável "opcao" para verificar a satisfação da condição atribuída
+
+            Passageiro passageiro = new Passageiro();
             switch (opcao) {
                 case 1: {
                     // Invoca o método que irá inicilizar o cadastro
-                    exibirCadastro();
+                    passageiro.exibirCadastro();
                     break;
                 }
                 case 2: {
                     // Invoca o método que irá inicializar o método que irá exibir o menu de cadastramento de viagem
-                    // exibirCadastroViagem();
+                    // passageiro.exibirCadastroViagem();
                     break;
                 }
                 case 3: {
@@ -55,33 +96,86 @@ public class Main {
                     // sairPrograma();
                     break;
                 }
+                default: {
+                    System.out.println("Opção inválida, tente novamente.");
+                }
             }
         }
     }
 
-    public static void exibirCadastro() {
+    public static void menuMotorista() {
+        // Criando a variável para utilzar o Scanner
+        Scanner menuMotorista = new Scanner(System.in);
 
-        Cadastro cad = new Cadastro();
-        Scanner entrada = new Scanner(System.in);
-        pularLinha();
-        System.out.println("""
-                ==============================================
-                                -- Cadastro --
-                ==============================================
-                """);
-        System.out.print("Digite o seu nome: ");
-        cad.setNome(entrada.next());
-        System.out.print("Digite o seu e-mail: ");
-        cad.setEmail(entrada.next());
-        System.out.print("Digite a sua data de nascimento: ");
-        cad.setDataNascimento(entrada.next());
+        // Criando um contador inicializado para ser utilizado
+        // para a atribuição da opção escolhida pelo usuário
+        int opcao = 1;
 
-    }
+        // Menu de opções sendo invocado por meio do DO WHILE
+        while (true) {
+            System.out.print("""
+                    ==============================================
+                                    -- CarONE-M --
+                                   -- Motorista --
+                    ==============================================
+                    1) Cadastrar usuário
+                    2) Cadastrar nova viagem
+                    3) Avaliações
+                    4) Trocar Perfil
+                    5) Sair
+                    ==============================================
+                    ---> Escolha uma opção:
+                    """);
+            // Atribuindo o valor digitado pelo usuário à variável "opcao"
+            opcao = menuMotorista.nextInt();
 
-    public static void pularLinha() {
-        for (int i = 0; i < 20; i++) {
-            System.out.println(" ");
+            // Avaliação do valor da variável "opcao" para
+            // verificar a satisfação da condição atribuída
+
+            Motorista motorista = new Motorista();
+            switch (opcao) {
+                case 1: {
+                    // Invoca o método que irá inicilizar o cadastro
+                    motorista.exibirCadastro();
+                    break;
+                }
+                case 2: {
+                    // Invoca o método que irá inicializar o método
+                    // que irá exibir o menu de cadastramento de viagem
+                    motorista.exibirCadastroViagem();
+                    break;
+                }
+                case 3: {
+                    // Invoca o método que irá buscar a carona
+                    // solicitada pelo usuário
+                    // exibirAvaliacoes();
+                    break;
+                }
+                case 4: {
+                    // Invoca o método que irá exibir o formulário
+                    // de avaliação da viagem
+                    // main();
+                    break;
+                }
+                case 5: {
+                    // Invoca o método que irá sair do programa
+                    // sairPrograma();
+                    break;
+                }
+                default: {
+                    System.out.println("Opção inválida, tente novamente.");
+                }
+            }
         }
     }
-}
+
+        private static void pularLinha() {
+            for (int i = 0; i < 20; i++) {
+                System.out.println(" ");
+            }
+        }
+    }
+
+
+
 
