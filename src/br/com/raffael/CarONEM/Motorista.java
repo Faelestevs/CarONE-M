@@ -41,6 +41,10 @@ public class Motorista extends Passageiro {
             senha = entradaMotorista.next();
         }
 
+        // Perguntar ao prof o motivo do verificador de cadastro não estar funcionando,
+        // impossibilitando que limite o acesso as outras opções
+        // Além de não estar sendo possível impedir o cadastro novamente do usuário nesta opção
+
         setVerificaCadastro(true);
 
         if (!getVerificaCadastro()) {
@@ -85,20 +89,22 @@ public class Motorista extends Passageiro {
         System.out.print("Digite o endereço do local: ");
         String end = novaViagem.next();
 
+
+        // Perguntar ao prof se durante como funcionaria a funcionalidade de trajetos, eu vou definir esses trajetos antes mesmo de iniciar o programa?
+
+        // Perguntar ao prof sobre a confirmação de carona, se estamos na perpectiva de passageiro, como que vamos aceitar a corrida como motorista?
+
+        // Essa lista de viagens possíveis, eu escolheria a opção por meio do get(item) do ArrayList?
+
         Local local = new Local(x, y, end); // Objeto instanciado para adicionar os dados dos pontos de partida através do construtor
 
-        System.out.print("Digite o ponto X do destino: ");
-        int destX = novaViagem.nextInt();
+        Viagem viagem = new Viagem(); // Perguntar ao prof sobre se é possível alterar a variável de instância a cada novo cadastro
+        viagem.adicionarLocal(local);
 
-        System.out.print("Digite o ponto Y do destino: ");
-        int destY = novaViagem.nextInt();
+        // Após perguntar tudo, estamos no caminho certo?
 
-        System.out.print("Digite o endereço do destino: ");
-        String destEndereco = novaViagem.next();
-
-        Destino destino = new Destino(destX, destY, destEndereco); // Objeto instanciado para adicionar os dados dos pontos de destino através do construtor
-
-        System.out.println("Viagem criada.");
+        System.out.println(viagem.getListaViagens());
+        System.out.println("Viagem cadastrada com sucesso.");
     }
 
     public String getPlaca(){

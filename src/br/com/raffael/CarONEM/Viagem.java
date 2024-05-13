@@ -1,30 +1,17 @@
 package br.com.raffael.CarONEM;
 
+import java.util.ArrayList;
+
 public class Viagem {
 
-    private double raio;
-    private Local centroLocal;
-    private Destino centroDestino;
+  private ArrayList<Local> listaViagens;
 
-    public Viagem(Local centro, double raio){
-        this.raio = raio;
-        this.centroLocal = centro;
-    }
+  public void adicionarLocal(Local local) {
+    listaViagens = new ArrayList<Local>();
+    listaViagens.add(local);
+  }
 
-    public Viagem(Destino centroDestino, double raio){
-        this.raio = raio;
-        this.centroDestino = centroDestino;
-    }
-
-    public boolean estaDentro(Local local) {
-        double distancia = centroLocal.distancia(local);
-        return raio >= distancia;
-    }
-
-    public double calculaDistancia(Destino centroDestino) {
-        double distancia = centroDestino.distanciaDestino(centroDestino);
-        return raio + distancia;
-    }
-
-
+  public ArrayList<Local> getListaViagens() {
+    return listaViagens;
+  }
 }

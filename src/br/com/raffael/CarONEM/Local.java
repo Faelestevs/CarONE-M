@@ -1,5 +1,8 @@
 package br.com.raffael.CarONEM;
 
+// Perguntar ao prof se estamos no caminho certo ao utilizar esse tipo de referência para
+// Verificar se está no raio de 2KM
+
 public class Local {
 
     private int pontoX;
@@ -9,6 +12,7 @@ public class Local {
     public Local(int pontoX, int pontoY, String endereco){
         this.pontoX = pontoX;
         this.pontoY = pontoY;
+        this.endereco = endereco;
     }
 
     public double distancia(Local local) {
@@ -30,5 +34,16 @@ public class Local {
 
     public void setPontoY(int pontoY) {
         this.pontoY = pontoY;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String toString() {
+        {return "Ponto X: " + this.getPontoX() + " // Ponto Y: " + this.getPontoY() + " // Endereço: " + this.getEndereco();}
     }
 }
