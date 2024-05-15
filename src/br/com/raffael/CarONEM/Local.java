@@ -43,6 +43,7 @@ public class Local {
         this.endereco = endereco;
     }
 
+    @Override
     public String toString() {
         {return "Ponto X: " + this.getPontoX() + " // Ponto Y: " + this.getPontoY() + " // Endereço: " + this.getEndereco();}
     }

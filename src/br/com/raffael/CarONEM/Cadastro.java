@@ -1,5 +1,6 @@
 package br.com.raffael.CarONEM;
 
+import java.net.PasswordAuthentication;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -16,8 +17,25 @@ public class Cadastro {
     private String dataNascimento;
     private String senha;
     private String confirmaSenha;
+    private boolean verificaCadastro;
+
+    private ArrayList<Passageiro> listaPassageiros = new ArrayList<>();
+    private ArrayList<Motorista> listaMotoristas = new ArrayList<>();
+
 
     // Métodos do cadastro
+
+
+    public Cadastro(String nome, String endereco, String email, String dataNascimento, String senha) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.senha = senha;
+    }
+
+    public Cadastro() {
+    }
 
     public void verificarSenha() {
         if (confirmaSenha.equals(senha)) {
@@ -25,6 +43,13 @@ public class Cadastro {
         }
         else {
             System.out.println("Senha inválida");
+        }
+    }
+
+    public void adicionarPassageiro(Passageiro passageiro) {
+        listaPassageiros.add(passageiro);
+        for (Passageiro p : listaPassageiros){
+            System.out.println(p);
         }
     }
 
@@ -74,5 +99,13 @@ public class Cadastro {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public boolean getVerificaCadastro(){
+        return verificaCadastro;
+    }
+
+    public void setVerificaCadastro(boolean verificaCadastro){
+        this.verificaCadastro = verificaCadastro;
     }
 }

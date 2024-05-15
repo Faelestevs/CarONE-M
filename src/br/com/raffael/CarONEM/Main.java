@@ -1,13 +1,21 @@
 
 import br.com.raffael.CarONEM.Cadastro;
+import br.com.raffael.CarONEM.Local;
 import br.com.raffael.CarONEM.Passageiro;
 import br.com.raffael.CarONEM.Motorista;
+import br.com.raffael.CarONEM.Viagem;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        menuPrincipal();
 
+    }
+
+
+    public static void menuPrincipal() {
         Scanner menu = new Scanner(System.in);
 
         int opcao = 1;
@@ -38,7 +46,6 @@ public class Main {
                     System.out.println("Opção Inválida.");
                 }
             }
-
         }
     }
 
@@ -49,6 +56,7 @@ public class Main {
         // Criando um contador inicializado para ser utilizado para a atribuição da opção escolhida pelo usuário
         int opcao = 1;
 
+        Passageiro passageiro = new Passageiro();
         // Menu de opções sendo invocado por meio do DO WHILE
         while (true) {
             System.out.print("""
@@ -69,7 +77,7 @@ public class Main {
 
             // Avaliação do valor da variável "opcao" para verificar a satisfação da condição atribuída
 
-            Passageiro passageiro = new Passageiro();
+
             switch (opcao) {
                 case 1: {
                     // Invoca o método que irá inicilizar o cadastro
@@ -78,17 +86,17 @@ public class Main {
                 }
                 case 2: {
                     // Invoca o método que irá inicializar o método que irá exibir o menu de cadastramento de viagem
-                    // passageiro.exibirCadastroViagem();
+                    // exibirBuscarCarona();
                     break;
                 }
                 case 3: {
                     // Invoca o método que irá buscar a carona solicitada pelo usuário
-                    // exibirBuscarCarona();
+
                     break;
                 }
                 case 4: {
                     // Invoca o método que irá exibir o formulário de avaliação da viagem
-                    // avaliarViagem();
+                    menuPrincipal();
                     break;
                 }
                 case 5: {
@@ -154,7 +162,7 @@ public class Main {
                 case 4: {
                     // Invoca o método que irá exibir o formulário
                     // de avaliação da viagem
-                    // main();
+                    menuPrincipal();
                     break;
                 }
                 case 5: {
@@ -169,13 +177,9 @@ public class Main {
         }
     }
 
-        private static void pularLinha() {
-            for (int i = 0; i < 20; i++) {
-                System.out.println(" ");
-            }
+    private static void pularLinha() {
+        for (int i = 0; i < 20; i++) {
+            System.out.println(" ");
         }
     }
-
-
-
-
+}

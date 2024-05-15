@@ -1,17 +1,23 @@
 package br.com.raffael.CarONEM;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Passageiro extends Cadastro {
 
     // Atributos do Passageiro
 
-    private boolean verificaCadastro;
+    public Passageiro(){
 
+    }
+
+    public Passageiro(String nome, String endereco, String email, String dataNascimento, String senha) {
+        super(nome, endereco, email, dataNascimento, senha);
+    }
 
     public void exibirCadastro() {
-        System.out.println(verificaCadastro);
-
+        System.out.println(getVerificaCadastro());
+        if (!getVerificaCadastro()) {
             Scanner entrada = new Scanner(System.in);
             System.out.println("""
                     ==============================================
@@ -21,6 +27,8 @@ public class Passageiro extends Cadastro {
             String nome = entrada.next();
             System.out.print("Digite o seu e-mail: ");
             String email = entrada.next();
+            System.out.print("Digite o seu endereço residencial: ");
+            String endereco = entrada.next();
             System.out.print("Digite a sua data de nascimento: ");
             String dataNascimento = entrada.next();
             System.out.print("Crie uma senha: ");
@@ -31,30 +39,25 @@ public class Passageiro extends Cadastro {
                 senha = entrada.next();
             }
 
-            setVerificaCadastro(true);
 
-            if (!verificaCadastro) {
-                Cadastro cad = new Cadastro();
-                cad.setNome(nome);
-                cad.setEmail(email);
-                cad.setDataNascimento(dataNascimento);
-                cad.setSenha(senha);
+
                 System.out.println("Cadastro realizado com sucesso!");
+                setVerificaCadastro(true);
+                adicionarPassageiro(new Passageiro(nome, endereco, email, dataNascimento, senha));
             } else {
                 System.out.println("Você já possui cadastro.");
             }
+
+
     }
 
     public void exibirCadastroViagem() {
 
     }
 
-    public boolean getVerificaCadastro(){
-        return verificaCadastro;
+    public String toString() {
+        {return "Nome: " + getNome() + "\nEmail: " + getEmail() + "\nEndereço: " + getEndereco() + "\nData de Nascimento: " + getDataNascimento();}
     }
 
-    public void setVerificaCadastro(boolean verificaCadastro){
-        this.verificaCadastro = verificaCadastro;
-    }
 
 }

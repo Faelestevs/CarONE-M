@@ -1,21 +1,30 @@
 package br.com.raffael.CarONEM;
 
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 // A classe Motorista herda tudo que a classe Passageiro possui
 // Só que a classe Motorista possui placa e quantidade de lugares
+
 public class Motorista extends Passageiro {
 
-    private String placa;
     private int lugaresDisponiveis;
+    private String placa;
+
+    public Motorista() {
+
+    }
+
+    public Motorista(String nome, String endereco, String email, String dataNascimento, String senha, String placa) {
+        super(nome, endereco, email, dataNascimento, senha);
+        this.placa = placa;
+    }
+
 
     // Sobrescrevendo o método existente na classe Passageiro
 
     @Override
     public void exibirCadastro() {
-
+        if (!getVerificaCadastro()) {
         Scanner entradaMotorista = new Scanner(System.in);
         System.out.println("""
                     ==============================================
@@ -40,20 +49,7 @@ public class Motorista extends Passageiro {
             System.out.print("Crie uma senha: ");
             senha = entradaMotorista.next();
         }
-
-        // Perguntar ao prof o motivo do verificador de cadastro não estar funcionando,
-        // impossibilitando que limite o acesso as outras opções
-        // Além de não estar sendo possível impedir o cadastro novamente do usuário nesta opção
-
-        setVerificaCadastro(true);
-
-        if (!getVerificaCadastro()) {
-            Cadastro cad = new Cadastro();
-            cad.setNome(nome);
-            cad.setEmail(email);
-            cad.setDataNascimento(dataNascimento);
-            setPlaca(placa);
-            cad.setSenha(senha);
+            setVerificaCadastro(true);
             System.out.println("Cadastro realizado com sucesso!");
         } else {
             System.out.println("Você já possui cadastro.");
@@ -73,22 +69,37 @@ public class Motorista extends Passageiro {
         while(lugares > 4 || lugares <= 0){
             System.out.println("Valor é inválido.");
             System.out.print("Lugares disponíveis no veículo (1 a 4): ");
-            lugares =novaViagem.nextInt();
+            lugares = novaViagem.nextInt();
         }
         System.out.println("Adicionando os pontos da viagem:");
 
         // Serão adicionados os pontos X e Y dos locais e partida e destino
         // Os dados obtidos serão calculados para obter a distância entre o ponto de partida e destino
 
-        System.out.print("Adicione o ponto X do local de partida: ");
-        int x = novaViagem.nextInt();
+        int numeroLocais;
+        int x = 0;
+        int y = 0;
+        String end = "";
+        Viagem viagem = new Viagem(); // Perguntar ao prof sobre se é possível alterar a variável de instância a cada novo cadastro
 
-        System.out.print("Adicione o ponto Y do local de partida: ");
-        int y = novaViagem.nextInt();
+        do {
+            System.out.print("Quantos locais você quer adicionar? \n");
+            numeroLocais = novaViagem.nextInt();
+        } while (numeroLocais < 1 || numeroLocais > 4); {
+            for (int i = 0; i < numeroLocais; i++) {
+                System.out.printf("%dº local: ", i+1);
+                System.out.print("Adicione o ponto X do local de partida: ");
+                x = novaViagem.nextInt();
 
-        System.out.print("Digite o endereço do local: ");
-        String end = novaViagem.next();
+                System.out.print("Adicione o ponto Y do local de partida: ");
+                y = novaViagem.nextInt();
 
+                System.out.print("Digite o endereço do local: ");
+                end = novaViagem.next();
+
+                viagem.adicionarLocal(new Local(x, y, end));
+            }
+        }
 
         // Perguntar ao prof se durante como funcionaria a funcionalidade de trajetos, eu vou definir esses trajetos antes mesmo de iniciar o programa?
 
@@ -96,14 +107,13 @@ public class Motorista extends Passageiro {
 
         // Essa lista de viagens possíveis, eu escolheria a opção por meio do get(item) do ArrayList?
 
-        Local local = new Local(x, y, end); // Objeto instanciado para adicionar os dados dos pontos de partida através do construtor
+         // Objeto instanciado para adicionar os dados dos pontos de partida através do construtor
 
-        Viagem viagem = new Viagem(); // Perguntar ao prof sobre se é possível alterar a variável de instância a cada novo cadastro
-        viagem.adicionarLocal(local);
+
+        viagem.exibirViagem();
 
         // Após perguntar tudo, estamos no caminho certo?
 
-        System.out.println(viagem.getListaViagens());
         System.out.println("Viagem cadastrada com sucesso.");
     }
 
@@ -114,5 +124,4 @@ public class Motorista extends Passageiro {
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-
 }
