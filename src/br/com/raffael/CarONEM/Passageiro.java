@@ -38,22 +38,15 @@ public class Passageiro extends Cadastro {
                 System.out.print("Crie uma senha: ");
                 senha = entrada.next();
             }
-
-
-
                 System.out.println("Cadastro realizado com sucesso!");
                 setVerificaCadastro(true);
                 adicionarPassageiro(new Passageiro(nome, endereco, email, dataNascimento, senha));
             } else {
                 System.out.println("Você já possui cadastro.");
             }
-
-
     }
 
-    public void exibirCadastroViagem() {
 
-    }
 
     public String toString() {
         {return "Nome: " + getNome() + "\nEmail: " + getEmail() + "\nEndereço: " + getEndereco() + "\nData de Nascimento: " + getDataNascimento();}

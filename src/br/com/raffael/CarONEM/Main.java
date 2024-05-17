@@ -1,11 +1,8 @@
 
 import br.com.raffael.CarONEM.Cadastro;
-import br.com.raffael.CarONEM.Local;
 import br.com.raffael.CarONEM.Passageiro;
 import br.com.raffael.CarONEM.Motorista;
-import br.com.raffael.CarONEM.Viagem;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -35,7 +32,7 @@ public class Main {
 
             switch (opcao) {
                 case 1: {
-                    menuPassageiro();
+                    exibirPerguntaPassageiro();
                     break;
                 }
                 case 2: {
@@ -111,6 +108,22 @@ public class Main {
         }
     }
 
+    public static void loginPassageiro() {
+
+        Scanner menu = new Scanner(System.in);
+
+        System.out.println("""
+                    ==============================================
+                                 -- Login Passageiro --
+                    ==============================================""");
+        System.out.print("Digite o seu e-mail: ");
+        String emailLogin = menu.next();
+        System.out.println("Digite a senha: ");
+        String senhaLogin = menu.next();
+
+    }
+
+
     public static void menuMotorista() {
         // Criando a variável para utilzar o Scanner
         Scanner menuMotorista = new Scanner(System.in);
@@ -172,6 +185,36 @@ public class Main {
                 }
                 default: {
                     System.out.println("Opção inválida, tente novamente.");
+                }
+            }
+        }
+    }
+
+    public static void exibirPerguntaPassageiro(){
+
+        Scanner menu = new Scanner(System.in);
+        Cadastro cad = new Cadastro();
+        Passageiro passageiro = new Passageiro();
+        int opcao = 0;
+
+        System.out.print("""
+                ==============================================
+                       -- Possui conta no CarONE-M ? --
+                ==============================================
+                Você deseja: Entrar em uma conta existente?
+                1) Sim
+                2) Não
+                ==============================================
+                Escolha uma opção: 
+                """);
+        opcao = menu.nextInt();
+
+        switch (opcao) {
+            case 1: {
+                if(cad.getListaPassageiros().size() == 0) {
+                    System.out.println("Não há contas cadastradas nessa máquina.");
+                } else if(cad.getListaPassageiros().size() > 0) {
+
                 }
             }
         }

@@ -46,10 +46,33 @@ public class Cadastro {
         }
     }
 
+    public void verificarLoginPassageiro(String emailLogin, String senhaLogin) {
+        for (Passageiro p : listaPassageiros) {
+            if(emailLogin.equals(p.getEmail()) == true && senhaLogin.equals(p.getSenha())) {
+
+            }
+        }
+    }
+
     public void adicionarPassageiro(Passageiro passageiro) {
         listaPassageiros.add(passageiro);
         for (Passageiro p : listaPassageiros){
             System.out.println(p);
+        }
+    }
+
+    public ArrayList<Motorista> getListaMotoristas() {
+        return listaMotoristas;
+    }
+
+    public ArrayList<Passageiro> getListaPassageiros() {
+        return listaPassageiros;
+    }
+
+    public void adicionarMotorista(Motorista motorista) {
+        listaMotoristas.add(motorista);
+        for (Motorista m : listaMotoristas) {
+            System.out.println(m);
         }
     }
 

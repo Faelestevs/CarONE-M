@@ -32,6 +32,8 @@ public class Motorista extends Passageiro {
                     ==============================================""");
         System.out.print("Digite o seu nome: ");
         String nome = entradaMotorista.next();
+        System.out.print("Digite o seu endereço: ");
+        String endereco = entradaMotorista.next();
         System.out.print("Digite o seu e-mail: ");
         String email = entradaMotorista.next();
         System.out.print("Digite a sua data de nascimento: ");
@@ -40,6 +42,7 @@ public class Motorista extends Passageiro {
         String placa = entradaMotorista.next();
         while(placa.length() != 7) {
             System.out.println("Placa digitada é inválida.");
+            System.out.print("Digite a placa do seu veículo: ");
             placa = entradaMotorista.next();
         }
         System.out.print("Crie uma senha: ");
@@ -50,6 +53,7 @@ public class Motorista extends Passageiro {
             senha = entradaMotorista.next();
         }
             setVerificaCadastro(true);
+            adicionarMotorista(new Motorista(nome, endereco, email, dataNascimento, senha, placa));
             System.out.println("Cadastro realizado com sucesso!");
         } else {
             System.out.println("Você já possui cadastro.");
@@ -123,5 +127,9 @@ public class Motorista extends Passageiro {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public String toString() {
+        {return "Nome: " + getNome() + "\nPlaca do Veículo: " + getPlaca();}
     }
 }
