@@ -2,18 +2,24 @@
 import br.com.raffael.CarONEM.Cadastro;
 import br.com.raffael.CarONEM.Passageiro;
 import br.com.raffael.CarONEM.Motorista;
+import br.com.raffael.CarONEM.Viagem;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         menuPrincipal();
-
     }
-
 
     public static void menuPrincipal() {
         Scanner menu = new Scanner(System.in);
+
+        Passageiro passageiro = new Passageiro();
+        Motorista motorista = new Motorista();
+        Passageiro p1 = new Passageiro("Raffa", "rua1", "raffa@gmail.com", "16/07/2004", "123456");
+        Cadastro cad = new Cadastro();
+        cad.adicionarPassageiro(p1);
+        System.out.println(cad.getListaPassageiros());
 
         int opcao = 1;
 
@@ -32,11 +38,11 @@ public class Main {
 
             switch (opcao) {
                 case 1: {
-                    exibirPerguntaPassageiro();
+                    exibirPerguntaPassageiro(cad, p1);
                     break;
                 }
                 case 2: {
-                    menuMotorista();
+                    menuMotorista(motorista);
                     break;
                 }
                 default: {
@@ -46,14 +52,13 @@ public class Main {
         }
     }
 
-    public static void menuPassageiro() {
+    public static void menuPassageiro(Passageiro passageiro) {
         // Criando a variável para utilzar o Scanner
         Scanner menuCliente = new Scanner(System.in);
 
         // Criando um contador inicializado para ser utilizado para a atribuição da opção escolhida pelo usuário
         int opcao = 1;
 
-        Passageiro passageiro = new Passageiro();
         // Menu de opções sendo invocado por meio do DO WHILE
         while (true) {
             System.out.print("""
@@ -78,7 +83,7 @@ public class Main {
             switch (opcao) {
                 case 1: {
                     // Invoca o método que irá inicilizar o cadastro
-                    passageiro.exibirCadastro();
+                    passageiro.exibirCadastro(passageiro);
                     break;
                 }
                 case 2: {
@@ -108,7 +113,7 @@ public class Main {
         }
     }
 
-    public static void loginPassageiro() {
+    public static void loginPassageiro(Cadastro cad) {
 
         Scanner menu = new Scanner(System.in);
 
@@ -117,14 +122,14 @@ public class Main {
                                  -- Login Passageiro --
                     ==============================================""");
         System.out.print("Digite o seu e-mail: ");
-        String emailLogin = menu.next();
+        String emailLogin = menu.nextLine();
         System.out.println("Digite a senha: ");
         String senhaLogin = menu.next();
-
+        cad.verificarLoginPassageiro(emailLogin, senhaLogin);
     }
 
 
-    public static void menuMotorista() {
+    public static void menuMotorista(Motorista motorista) {
         // Criando a variável para utilzar o Scanner
         Scanner menuMotorista = new Scanner(System.in);
 
@@ -152,12 +157,10 @@ public class Main {
 
             // Avaliação do valor da variável "opcao" para
             // verificar a satisfação da condição atribuída
-
-            Motorista motorista = new Motorista();
             switch (opcao) {
                 case 1: {
                     // Invoca o método que irá inicilizar o cadastro
-                    motorista.exibirCadastro();
+                    motorista.exibirCadastro(motorista);
                     break;
                 }
                 case 2: {
@@ -190,11 +193,10 @@ public class Main {
         }
     }
 
-    public static void exibirPerguntaPassageiro(){
+    public static void exibirPerguntaPassageiro(Cadastro cad, Passageiro passageiro){
 
         Scanner menu = new Scanner(System.in);
-        Cadastro cad = new Cadastro();
-        Passageiro passageiro = new Passageiro();
+
         int opcao = 0;
 
         System.out.print("""
@@ -214,7 +216,7 @@ public class Main {
                 if(cad.getListaPassageiros().size() == 0) {
                     System.out.println("Não há contas cadastradas nessa máquina.");
                 } else if(cad.getListaPassageiros().size() > 0) {
-
+                    loginPassageiro(cad);
                 }
             }
         }

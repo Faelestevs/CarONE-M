@@ -1,6 +1,5 @@
 package br.com.raffael.CarONEM;
 
-import java.net.PasswordAuthentication;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -40,19 +39,27 @@ public class Cadastro {
     public void verificarSenha() {
         if (confirmaSenha.equals(senha)) {
             System.out.println("As senhas correspondem");
-        }
-        else {
+        } else {
             System.out.println("Senha inválida");
         }
     }
 
-    public void verificarLoginPassageiro(String emailLogin, String senhaLogin) {
-        for (Passageiro p : listaPassageiros) {
-            if(emailLogin.equals(p.getEmail()) == true && senhaLogin.equals(p.getSenha())) {
+    public boolean verificarLoginPassageiro(String emailLogin, String senhaLogin) {
 
+        boolean validacao = false;
+
+        for (Passageiro p : listaPassageiros) {
+            if (emailLogin.equals(p.getEmail()) == true && senhaLogin.equals(p.getSenha())) {
+                validacao = true;
+                break;
+            } else {
+                System.out.println("O login fornecido é inválido, tente novamente");
+                validacao = false;
             }
         }
+        return validacao;
     }
+
 
     public void adicionarPassageiro(Passageiro passageiro) {
         listaPassageiros.add(passageiro);

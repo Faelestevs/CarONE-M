@@ -15,7 +15,7 @@ public class Passageiro extends Cadastro {
         super(nome, endereco, email, dataNascimento, senha);
     }
 
-    public void exibirCadastro() {
+    public void exibirCadastro(Passageiro passageiro) {
         System.out.println(getVerificaCadastro());
         if (!getVerificaCadastro()) {
             Scanner entrada = new Scanner(System.in);

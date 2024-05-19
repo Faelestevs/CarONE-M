@@ -22,8 +22,7 @@ public class Motorista extends Passageiro {
 
     // Sobrescrevendo o método existente na classe Passageiro
 
-    @Override
-    public void exibirCadastro() {
+    public void exibirCadastro(Motorista motorista) {
         if (!getVerificaCadastro()) {
         Scanner entradaMotorista = new Scanner(System.in);
         System.out.println("""
