@@ -10,30 +10,40 @@ public class Cadastro {
 
     // Atributos do Cadastro
 
-    private String nome;
-    private String endereco;
-    private String email;
-    private String dataNascimento;
-    private String senha;
-    private String confirmaSenha;
-    private boolean verificaCadastro;
+    protected String nome;
+    protected String endereco;
+    protected String email;
+    protected String dataNascimento;
+    protected String senha;
+    protected String confirmaSenha;
+    protected boolean verificaCadastro;
+    protected double mediaAvaliacoes;
 
     private ArrayList<Passageiro> listaPassageiros = new ArrayList<>();
     private ArrayList<Motorista> listaMotoristas = new ArrayList<>();
 
-
     // Métodos do cadastro
 
 
-    public Cadastro(String nome, String endereco, String email, String dataNascimento, String senha) {
+    public Cadastro(String nome, String endereco, String email, String dataNascimento, String senha, boolean verificaCadastro, double mediaAvaliacoes) {
         this.nome = nome;
         this.endereco = endereco;
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.senha = senha;
+        this.verificaCadastro = verificaCadastro;
+        this.mediaAvaliacoes = mediaAvaliacoes;
     }
 
     public Cadastro() {
+    }
+
+    public void localizaPassageiro(String emailLogin) {
+        for (Passageiro p : listaPassageiros) {
+            if(emailLogin.equals(p.getEmail())){
+                System.out.println("Bem-Vindo " + p.getNome());
+            }
+        }
     }
 
     public void verificarSenha() {

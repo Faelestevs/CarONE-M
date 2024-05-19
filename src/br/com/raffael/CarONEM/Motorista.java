@@ -14,8 +14,8 @@ public class Motorista extends Passageiro {
 
     }
 
-    public Motorista(String nome, String endereco, String email, String dataNascimento, String senha, String placa) {
-        super(nome, endereco, email, dataNascimento, senha);
+    public Motorista(String nome, String endereco, String email, String dataNascimento, String senha, boolean verificaCadastro, String placa, double mediaAvaliacoes) {
+        super(nome, endereco, email, dataNascimento, senha, verificaCadastro, mediaAvaliacoes);
         this.placa = placa;
     }
 
@@ -52,7 +52,8 @@ public class Motorista extends Passageiro {
             senha = entradaMotorista.next();
         }
             setVerificaCadastro(true);
-            adicionarMotorista(new Motorista(nome, endereco, email, dataNascimento, senha, placa));
+            mediaAvaliacoes = 5.0;
+            adicionarMotorista(new Motorista(nome, endereco, email, dataNascimento, senha, verificaCadastro, placa, mediaAvaliacoes));
             System.out.println("Cadastro realizado com sucesso!");
         } else {
             System.out.println("Você já possui cadastro.");
@@ -60,7 +61,7 @@ public class Motorista extends Passageiro {
     }
 
     // Método que irá realizar o cadastro da viagem
-    public void exibirCadastroViagem() {
+    public void exibirCadastroViagem(Viagem viagem) {
         Scanner novaViagem = new Scanner(System.in);
 
         System.out.println("""
@@ -83,7 +84,7 @@ public class Motorista extends Passageiro {
         int x = 0;
         int y = 0;
         String end = "";
-        Viagem viagem = new Viagem(); // Perguntar ao prof sobre se é possível alterar a variável de instância a cada novo cadastro
+        // Perguntar ao prof sobre se é possível alterar a variável de instância a cada novo cadastro
 
         do {
             System.out.print("Quantos locais você quer adicionar? \n");

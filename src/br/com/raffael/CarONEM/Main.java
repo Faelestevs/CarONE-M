@@ -8,17 +8,19 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        menuPrincipal();
-    }
-
-    public static void menuPrincipal() {
-        Scanner menu = new Scanner(System.in);
 
         Passageiro passageiro = new Passageiro();
         Motorista motorista = new Motorista();
-        Passageiro p1 = new Passageiro("Raffa", "rua1", "raffa@gmail.com", "16/07/2004", "123456");
         Cadastro cad = new Cadastro();
-        cad.adicionarPassageiro(p1);
+        Viagem viagem = new Viagem();
+
+        menuPrincipal(passageiro, motorista, cad, viagem);
+    }
+
+    public static void menuPrincipal(Passageiro passageiro, Motorista motorista, Cadastro cad, Viagem viagem) {
+        Scanner menu = new Scanner(System.in);
+
+
         System.out.println(cad.getListaPassageiros());
 
         int opcao = 1;
@@ -38,11 +40,11 @@ public class Main {
 
             switch (opcao) {
                 case 1: {
-                    exibirPerguntaPassageiro(cad, p1);
+                    exibirPerguntaPassageiro(passageiro, motorista, cad, viagem);
                     break;
                 }
                 case 2: {
-                    menuMotorista(motorista);
+                    menuMotorista(passageiro, motorista, cad, viagem);
                     break;
                 }
                 default: {
@@ -52,7 +54,7 @@ public class Main {
         }
     }
 
-    public static void menuPassageiro(Passageiro passageiro) {
+    public static void menuPassageiro(Passageiro passageiro, Motorista motorista, Cadastro cad, Viagem viagem) {
         // Criando a variável para utilzar o Scanner
         Scanner menuCliente = new Scanner(System.in);
 
@@ -79,31 +81,28 @@ public class Main {
 
             // Avaliação do valor da variável "opcao" para verificar a satisfação da condição atribuída
 
-
             switch (opcao) {
                 case 1: {
                     // Invoca o método que irá inicilizar o cadastro
-                    passageiro.exibirCadastro(passageiro);
+                    passageiro.exibirCadastro(cad, passageiro, passageiro.getEmail());
                     break;
                 }
                 case 2: {
-                    // Invoca o método que irá inicializar o método que irá exibir o menu de cadastramento de viagem
-                    // exibirBuscarCarona();
+                    passageiro.exibirBuscarCarona();
                     break;
                 }
                 case 3: {
-                    // Invoca o método que irá buscar a carona solicitada pelo usuário
 
                     break;
                 }
                 case 4: {
                     // Invoca o método que irá exibir o formulário de avaliação da viagem
-                    menuPrincipal();
+                    menuPrincipal(passageiro, motorista, cad, viagem);
                     break;
                 }
                 case 5: {
                     // Invoca o método que irá sair do programa
-                    // sairPrograma();
+                    sairPrograma();
                     break;
                 }
                 default: {
@@ -113,7 +112,7 @@ public class Main {
         }
     }
 
-    public static void loginPassageiro(Cadastro cad) {
+    public static void loginPassageiro(Passageiro passageiro, Motorista motorista, Cadastro cad, Viagem viagem) {
 
         Scanner menu = new Scanner(System.in);
 
@@ -125,11 +124,14 @@ public class Main {
         String emailLogin = menu.nextLine();
         System.out.println("Digite a senha: ");
         String senhaLogin = menu.next();
-        cad.verificarLoginPassageiro(emailLogin, senhaLogin);
+        if(cad.verificarLoginPassageiro(emailLogin, senhaLogin) == true) {
+            cad.localizaPassageiro(emailLogin);
+            menuPassageiro(passageiro, motorista, cad, viagem);
+        }
     }
 
 
-    public static void menuMotorista(Motorista motorista) {
+    public static void menuMotorista(Passageiro passageiro, Motorista motorista, Cadastro cad, Viagem viagem) {
         // Criando a variável para utilzar o Scanner
         Scanner menuMotorista = new Scanner(System.in);
 
@@ -137,7 +139,7 @@ public class Main {
         // para a atribuição da opção escolhida pelo usuário
         int opcao = 1;
 
-        // Menu de opções sendo invocado por meio do DO WHILE
+        // Menu de opções
         while (true) {
             System.out.print("""
                     ==============================================
@@ -166,7 +168,7 @@ public class Main {
                 case 2: {
                     // Invoca o método que irá inicializar o método
                     // que irá exibir o menu de cadastramento de viagem
-                    motorista.exibirCadastroViagem();
+                    motorista.exibirCadastroViagem(viagem);
                     break;
                 }
                 case 3: {
@@ -178,12 +180,12 @@ public class Main {
                 case 4: {
                     // Invoca o método que irá exibir o formulário
                     // de avaliação da viagem
-                    menuPrincipal();
+                    menuPrincipal(passageiro, motorista, cad, viagem);
                     break;
                 }
                 case 5: {
                     // Invoca o método que irá sair do programa
-                    // sairPrograma();
+                    sairPrograma();
                     break;
                 }
                 default: {
@@ -193,7 +195,7 @@ public class Main {
         }
     }
 
-    public static void exibirPerguntaPassageiro(Cadastro cad, Passageiro passageiro){
+    public static void exibirPerguntaPassageiro(Passageiro passageiro, Motorista motorista, Cadastro cad, Viagem viagem){
 
         Scanner menu = new Scanner(System.in);
 
@@ -216,8 +218,12 @@ public class Main {
                 if(cad.getListaPassageiros().size() == 0) {
                     System.out.println("Não há contas cadastradas nessa máquina.");
                 } else if(cad.getListaPassageiros().size() > 0) {
-                    loginPassageiro(cad);
+                    loginPassageiro(passageiro, motorista, cad, viagem);
                 }
+                break;
+            }
+            case 2: {
+                menuPassageiro(passageiro, motorista, cad, viagem);
             }
         }
     }
@@ -226,5 +232,19 @@ public class Main {
         for (int i = 0; i < 20; i++) {
             System.out.println(" ");
         }
+    }
+
+    public static void sairPrograma() {
+        System.out.println("""
+                ==============================================
+                          Projeto desenvolvido por: 
+                
+                          Graziely Severo - 10425431
+                           Paulo Andrade - 10420708
+                          Raffael Esteves - 10420414
+                                 Turma 02J11
+                           
+                ==============================================
+                """);
     }
 }

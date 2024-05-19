@@ -9,6 +9,15 @@ public class Local {
     private int pontoY;
     private String endereco;
 
+    public Local() {
+
+    }
+
+    public Local(int pontoX, int pontoY) {
+        this.pontoX = pontoX;
+        this.pontoY = pontoY;
+    }
+
     public Local(int pontoX, int pontoY, String endereco){
         this.pontoX = pontoX;
         this.pontoY = pontoY;

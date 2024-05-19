@@ -1,21 +1,22 @@
 package br.com.raffael.CarONEM;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Passageiro extends Cadastro {
 
     // Atributos do Passageiro
 
+    Partida partida = new Partida();
+    Destino destino = new Destino();
+
     public Passageiro(){
-
     }
 
-    public Passageiro(String nome, String endereco, String email, String dataNascimento, String senha) {
-        super(nome, endereco, email, dataNascimento, senha);
+    public Passageiro(String nome, String endereco, String email, String dataNascimento, String senha, boolean verificaCadastro, double mediaAvaliacoes) {
+        super(nome, endereco, email, dataNascimento, senha, verificaCadastro, mediaAvaliacoes);
     }
 
-    public void exibirCadastro(Passageiro passageiro) {
+    public void exibirCadastro(Cadastro cad, Passageiro passageiro, String email) {
         System.out.println(getVerificaCadastro());
         if (!getVerificaCadastro()) {
             Scanner entrada = new Scanner(System.in);
@@ -26,7 +27,7 @@ public class Passageiro extends Cadastro {
             System.out.print("Digite o seu nome: ");
             String nome = entrada.next();
             System.out.print("Digite o seu e-mail: ");
-            String email = entrada.next();
+            email = entrada.next();
             System.out.print("Digite o seu endereço residencial: ");
             String endereco = entrada.next();
             System.out.print("Digite a sua data de nascimento: ");
@@ -40,10 +41,21 @@ public class Passageiro extends Cadastro {
             }
                 System.out.println("Cadastro realizado com sucesso!");
                 setVerificaCadastro(true);
-                adicionarPassageiro(new Passageiro(nome, endereco, email, dataNascimento, senha));
+                mediaAvaliacoes = 5.0;
+                cad.adicionarPassageiro(new Passageiro(nome, endereco, email, dataNascimento, senha, verificaCadastro, mediaAvaliacoes));
             } else {
                 System.out.println("Você já possui cadastro.");
             }
+
+    }
+
+    public void exibirBuscarCarona(Partida partida, Destino destino) {
+        System.out.println("""
+                ==============================================
+                              -- Buscar Carona --
+                ==============================================
+                
+                """);
     }
 
 
